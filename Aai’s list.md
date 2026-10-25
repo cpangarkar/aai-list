@@ -1,0 +1,20 @@
+राम शेवाळकर
+
+* [कृष्ण \- १](https://youtu.be/qRlJlPF7Vko?si=ebOjMMFpcCqLP5X1)  
+* [कृष्ण \- २](https://youtu.be/umAWQ7qgzYE?si=dG7OzZJv40JrdwrF)  
+* [कर्ण](https://youtu.be/uYNlyZCO4Xg?si=0K2u5gIr3Wg2OcR1)  
+* [पसायदान](https://youtu.be/-S98vgUS7CU?si=3ZaYXP_m8btjK9Vg)  
+* [ज्ञानेश्वर \- १](https://youtu.be/WointNLIK6k?si=QxJ6g7rXs7ASQnD2)  
+* [ज्ञानेश्वर \- २](https://youtu.be/r6W6qS_fL1g?si=q1-yai2YDmqpCG8W)  
+* [ज्ञानेश्वर \- ३](https://youtu.be/3UHsmSswhZE?si=da0j_CCFh1Rf1B3u)  
+* [ज्ञानेश्वरांची समाधी](https://youtu.be/cmnv8x3yrOM?si=H0FEAizg4xRQaRYq)  
+* [ज्ञानेश्वरी](https://youtu.be/JxKLr4QVLQk?si=Np0xUpJaNNXTB0Jl)  
+* [तुकडोजी महाराज](https://youtu.be/TM9PXOtAOfc?si=gDiLkg-p6_4lI2lK)  
+* [दुर्योधन](https://youtu.be/vmHvyDJynm8?si=LBGu3zOKeRdzphGK)  
+* [रामायणचे राजकारण](https://youtu.be/CnxyrL41Sek?si=8K9EhmaZafwv5KDz)  
+* [लक्ष्मण](https://youtu.be/KyC4R-OE3-0?si=dDhDeBF19ZlvhLK5)  
+* [वीर सावरकर](https://youtu.be/Mbju-a7RWqM?si=SoCBg6P5kI2X-dES)  
+* [विनोबा](https://youtu.be/qx1kq6RUPgs?si=oqdkxv7oOwVpu1EQ)  
+* [महाभारतातील स्त्रीशक्ती](https://youtu.be/qy9AXxiVNvw?si=NYmblldF3hruzkiA)  
+* [सीता](https://youtu.be/oBOcK9dLx1Q?si=Z72nz6p2tlrWy9ZC)
+
