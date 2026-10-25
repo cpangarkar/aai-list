@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="mr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>आईची यादी</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf6ef;
+    --card: #ffffff;
+    --text: #2b2118;
+    --muted: #7a6a58;
+    --accent: #b5532a;
+    --border: #eadfce;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1814;
+      --card: #28221c;
+      --text: #f3ebe0;
+      --muted: #b3a492;
+      --accent: #e8875a;
+      --border: #3a3129;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans Devanagari", system-ui, sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+  main { max-width: 960px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 2rem; margin: 0 0 8px; }
+  nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 8px; }
+  nav a {
+    padding: 6px 14px; border: 1px solid var(--border); border-radius: 999px;
+    color: var(--text); text-decoration: none; background: var(--card);
+  }
+  nav a:hover { border-color: var(--accent); color: var(--accent); }
+  section { margin-top: 40px; }
+  h2 {
+    font-size: 1.5rem; margin: 0 0 16px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .grid {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+  .grid a {
+    display: block; height: 100%;
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden; color: var(--text); text-decoration: none;
+    transition: transform .15s, border-color .15s;
+  }
+  .grid a:hover, .grid a:focus-visible { transform: translateY(-2px); border-color: var(--accent); }
+  .grid img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--border); }
+  .grid span { display: block; padding: 10px 14px 12px; font-weight: 600; font-size: 1.1rem; }
+  .status { color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>आईची यादी</h1>
+  <nav id="nav"></nav>
+  <div id="content"><p class="status">लोड होत आहे…</p></div>
+</main>
+<script>
+  // The list lives in the markdown file next to this page; edit that file to add links.
+  // Format: a plain line (or "# heading") starts a section, "* [title](url)" adds a link to it.
+  const SOURCE = "Aai’s list.md";
+
+  function youtubeId(url) {
+    try {
+      const u = new URL(url);
+      if (u.hostname === "youtu.be") return u.pathname.slice(1);
+      if (u.searchParams.get("v")) return u.searchParams.get("v");
+      const m = u.pathname.match(/\/(shorts|embed|live)\/([^/?]+)/);
+      return m ? m[2] : null;
+    } catch { return null; }
+  }
+
+  function parse(md) {
+    const sections = [];
+    for (const raw of md.split(/\r?\n/)) {
+      const line = raw.trim();
+      if (!line) continue;
+      const item = line.match(/^[*\-+]\s+\[(.+?)\]\((.+?)\)/);
+      if (item) {
+        if (!sections.length) sections.push({ title: "", links: [] });
+        sections.at(-1).links.push({ title: item[1].replace(/\\(.)/g, "$1"), url: item[2] });
+      } else {
+        sections.push({ title: line.replace(/^#+\s*/, "").replace(/\\(.)/g, "$1"), links: [] });
+      }
+    }
+    return sections.filter(s => s.links.length);
+  }
+
+  function el(tag, props = {}, ...children) {
+    const e = Object.assign(document.createElement(tag), props);
+    e.append(...children);
+    return e;
+  }
+
+  function render(sections) {
+    const nav = document.getElementById("nav");
+    const content = document.getElementById("content");
+    content.replaceChildren();
+    sections.forEach((s, i) => {
+      const id = "s" + (i + 1);
+      if (sections.length > 1) nav.append(el("a", { href: "#" + id, textContent: s.title }));
+      const list = el("ul", { className: "grid" });
+      for (const link of s.links) {
+        const a = el("a", { href: link.url, target: "_blank", rel: "noopener" });
+        const vid = youtubeId(link.url);
+        if (vid) a.append(el("img", { src: `https://i.ytimg.com/vi/${vid}/hqdefault.jpg`, alt: "", loading: "lazy" }));
+        a.append(el("span", { textContent: link.title }));
+        list.append(el("li", {}, a));
+      }
+      content.append(el("section", { id }, el("h2", { textContent: s.title }), list));
+    });
+  }
+
+  fetch(encodeURI(SOURCE))
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(md => render(parse(md)))
+    .catch(() => {
+      document.getElementById("content").replaceChildren(
+        el("p", { className: "status", textContent: "यादी लोड करता आली नाही." }));
+    });
+</script>
+</body>
+</html>
